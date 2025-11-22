@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengumuman Kelulusan Kaderisasi</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f4c3a, #2e7d65);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      width: 92%;
+      max-width: 460px;
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      color: #0f4c3a;
+      margin-bottom: 0.3rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #2e7d65;
+      margin-bottom: 1.5rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #0f4c3a;
+    }
+
+    button {
+      background: #0f4c3a;
+      color: white;
+      padding: 10px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #093427;
+      transform: scale(1.05);
+    }
+
+    .result-img {
+      margin-top: 1.2rem;
+      width: 100%;
+      border-radius: 12px;
+      display: none;
+      animation: fadeIn 1s ease;
+    }
+
+    .error {
+      color: #b71c1c;
+      background: #ffebee;
+      border-left: 5px solid #b71c1c;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Pengumuman Kelulusan</h1>
+    <h2>KADERISASI HIMA PROMOSI KESEHATAN</h2>
+
+    <div id="error" class="error"></div>
+
+    <div id="form-area">
+      <input type="email" id="email" placeholder="Masukkan email kamu...">
+      <button onclick="cekEmail()">Lihat Hasil</button>
+    </div>
+
+    <img id="hasil-img" class="result-img">
+  </div>
+
+<script>
+  const lulus = [
+    "abcde@gmail.com",
+    "ashfiya@gmail.com",
+    "nabila@gmail.com"
+  ];
+
+  const tidakLulus = [
+    "maaf@gmail.com",
+    "oke@gmail.com"
+  ];
+
+  function cekEmail() {
+    const email = document.getElementById("email").value.trim();
+    const errorDiv = document.getElementById("error");
+    const img = document.getElementById("hasil-img");
+    const form = document.getElementById("form-area");
+
+    errorDiv.style.display = "none";
+    img.style.display = "none";
+
+    if (!email.endsWith("@gmail.com")) {
+      errorDiv.style.display = "block";
+      errorDiv.innerHTML = "Email harus menggunakan @gmail.com";
+      return;
+    }
+
+    if (lulus.includes(email)) {
+      form.style.display = "none";
+      img.src = "https://raw.githubusercontent.com/aspiyaaa/pengumuman-kaderisasi/main/assets/SELAMAT!.png";
+      img.style.display = "block";
+      return;
+    }
+
+    if (tidakLulus.includes(email)) {
+      form.style.display = "none";
+      img.src = "https://raw.githubusercontent.com/aspiyaaa/pengumuman-kaderisasi/main/assets/TETAP-SEMANGAT!.png";
+      img.style.display = "block";
+      return;
+    }
+
+    errorDiv.style.display = "block";
+    errorDiv.innerHTML = "Email tidak ditemukan dalam data.";
+  }
+</script>
+
+</body>
+</html>
